@@ -74,12 +74,14 @@ These numeric features were **scaled when required** (e.g., for SVM).
 ### Classification Results
 
 | Model | Accuracy |
+|------|-----|
 | Logistic Regression | 54% |
 | Linear SVM | 52.24% |
 | Random Forest | 52.61% |
 
 #### Logistic Regression – Confusion Matrix
 ![alt text](Confusion_Matrix_LR.png)
+
 
 ### Regression Results
 
@@ -102,15 +104,44 @@ A **Streamlit-based web application** was developed to demonstrate real-time pre
 ## Project Structure
 
 AutoJudge/
-├── app.py
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── notebooks/
-├── data/
-│   └── processed/
+
+├── app.py  
+├── README.md  
+├── requirements.txt  
+├── .gitignore  
+├── notebooks/  
+├── data/  
+│   └── processed/  
 └── models/ 
 
-## How to run
+## How to Run
+
+### Step 1: Clone the Repository
+
+```
+git clone https://github.com/Abhisaar4358/AutoJudge.git  
+cd AutoJudge
+```
+### Step 2: Create and Activate Virtual Environment
+
+```
+python -m venv venv
+venv\Scripts\activate (Windows)
+source venv/bin/activate(Linux/macOS)
+```
+### Step 4: Install Dependencies
+
+```
 pip install -r requirements.txt
+```
+### Step 5: Run the Application
+```
 streamlit run app.py
+```
+### Step 6: Access the Application
+```
+http://localhost:8501
+```
+## Details
+
+
