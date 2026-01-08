@@ -17,6 +17,7 @@ The system predicts both:
 - Web Application  
 - Project Structure  
 - How to Run  
+- Profile Overview
 
 ## Overview
 
@@ -116,7 +117,6 @@ AutoJudge/
 │   └── processed/  
 └── models/ 
 
-
 ## How to Run
 
 ### Step 1: Clone the Repository
@@ -145,3 +145,8 @@ streamlit run app.py
 ```
 http://localhost:8501
 ```
+## Profile Overview
+Name: Abhisaar Seth  
+Enrollment No: 24112003  
+Demo Video :  [AutoJudge_Video](https://drive.google.com/file/d/1KNgW7scE6ADEMPYvcELvEy0Lh4GziNN2/view?usp=sharing)  
+Report :  [AutoJudge_Report](https://drive.google.com/file/d/10N1d64ClDoVkmbu2jn5cQ35hVAMGQyi0/view?usp=sharing)
