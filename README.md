@@ -34,6 +34,7 @@ Each data sample contains:
 - `description`
 - `input_description`
 - `output_description`
+- `sample i/o`
 - `problem_class` (Easy / Medium / Hard)
 - `problem_score` (numerical)
 
@@ -105,14 +106,16 @@ A **Streamlit-based web application** was developed to demonstrate real-time pre
 
 AutoJudge/
 
-├── app.py  
-├── README.md  
+├── app.py   
 ├── requirements.txt  
 ├── .gitignore  
+├── .gitattributes  
 ├── notebooks/  
+├── README.md  
 ├── data/  
 │   └── processed/  
 └── models/ 
+
 
 ## How to Run
 
@@ -142,6 +145,3 @@ streamlit run app.py
 ```
 http://localhost:8501
 ```
-## Details
-
-
