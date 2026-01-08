@@ -4,6 +4,16 @@ import pandas as pd
 import numpy as np
 from scipy.sparse import hstack
 
+CLASS_SCORE_RANGES = {
+    "Easy": (0.0, 3.0),
+    "Medium": (3.0, 7.0),
+    "Hard": (7.0, 10.0)
+}
+
+def adjust_score(score, class_name):
+    low, high = CLASS_SCORE_RANGES[class_name]
+    return max(low, min(score, high))
+
 numeric_feature_names = joblib.load("models/numeric_feature_names.pkl")
 tfidf = joblib.load("models/tfidf_vectorizer.pkl")
 clf = joblib.load("models/classification_model.pkl")
@@ -28,6 +38,10 @@ if st.button("Predict Difficulty"):
 
     if description.strip()=="":
         st.warning("Please enter a problem description")
+    elif input_desc.strip()=="":
+        st.warning("Please enter Input description")
+    elif output_desc.strip()=="":
+        st.warning("Please enter Output description")    
     else:
         full_text=" ".join([description, input_desc, output_desc]).lower()
         temp_df=pd.DataFrame({"clean_text":[full_text]})
@@ -56,18 +70,19 @@ if st.button("Predict Difficulty"):
         score_pred = reg.predict(X_final)[0]
         class_map = {0: "Easy", 1: "Medium", 2: "Hard"}
         class_name = class_map[class_pred]
-        st.success("✅ Prediction Complete")
+        final_score=adjust_score(score_pred,class_name)
+        st.success("Prediction Complete")
 
         colA, colB = st.columns(2)
 
         with colA:
             st.metric(
-                label="📊 Difficulty Class",
+                label="Difficulty Class",
                 value=class_name
             )
 
         with colB:
             st.metric(
-                label="🔢 Difficulty Score",
-                value=f"{score_pred:.2f} / 10"
+                label="Difficulty Score",
+                value=f"{final_score:.2f} / 10"
             )
