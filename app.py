@@ -4,14 +4,11 @@ import pandas as pd
 import numpy as np
 from scipy.sparse import hstack
 
-CLASS_SCORE_RANGES = {
-    "Easy": (0.0, 3.0),
-    "Medium": (3.0, 7.0),
-    "Hard": (7.0, 10.0)
-}
+score_ranges = joblib.load("models/score_ranges.pkl")
 
-def adjust_score(score, class_name):
-    low, high = CLASS_SCORE_RANGES[class_name]
+def adjust_score(score, class_pred, score_ranges):
+    low = score_ranges[class_pred]["low"]
+    high = score_ranges[class_pred]["high"]
     return max(low, min(score, high))
 
 numeric_feature_names = joblib.load("models/numeric_feature_names.pkl")
@@ -68,9 +65,9 @@ if st.button("Predict Difficulty"):
         X_final = hstack([X_tfidf, numeric_features])
         class_pred = clf.predict(X_final)[0]
         score_pred = reg.predict(X_final)[0]
-        class_map = {0: "Easy", 1: "Medium", 2: "Hard"}
+        class_map = {0: "Easy", 1: "Hard", 2: "Medium"}
         class_name = class_map[class_pred]
-        final_score=adjust_score(score_pred,class_name)
+        final_score=adjust_score(score_pred,class_pred,score_ranges)
         st.success("Prediction Complete")
 
         colA, colB = st.columns(2)
